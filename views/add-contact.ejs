@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="p-5" style="margin-top: 50px;">
+        <h1>Add Contact</h1>
+        <p>This is add new contact form</p>
+        <hr>
+        <br>
+        <!-- Pengkondisian apabila terdapat error untuk memunculkan pesan alert -->
+        <% if (typeof errors != 'undefined') { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error => { %>
+                     <li><%= error.msg %> </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+
+        <!-- Pengkondisian apabila value sementara sudah terisi -->
+        <% let tempValue %>
+        <% if (locals.tempParams) { tempValue = tempParams %>
+        <% } %> 
+
+        <form method="post" action="/contact" class="col-6">
+            <div class="mb-3">
+                <label for="inputName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="inputName" name="name" value="<%= tempValue?.name %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" name="email" value="<%= tempValue?.email %>">
+            </div>
+            <div class="mb-3">
+                <label for="inputMobile" class="form-label">Mobile Phone</label>
+                <input type="number" class="form-control" id="inputMobile" name="mobile" value="<%= tempValue?.mobile %>" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

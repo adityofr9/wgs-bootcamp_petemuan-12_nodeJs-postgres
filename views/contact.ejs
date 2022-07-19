@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="p-5" style="margin-top: 50px;">
+        <h1>Hello, <%= nama %></h1>
+        <p>This is contact page</p>
+        <hr>
+        <br>
+        <h3>Contact List</h3>
+        <a href="/contact/add" class="btn btn-primary">Add Contact</a>
+        <!-- Pengkondisian bila terdapat pesan flash message yang ingin ditampilkan -->
+        <% if (msg.length !== 0) { %>
+            <div class="alert alert-warning mt-3" role="alert">
+                <%= msg %> 
+            </div>
+        <% } %>
+        <table class="table mt-3">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <!-- Pengkondisian apabila data kosong -->
+                <% if (cont.length < 1) { %>
+                    <tr>
+                        <th scope="col" colspan="4">
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <b>Contact data is empty!</b>
+                            </div>
+                        </th>
+                    </tr>
+                <% } else { %>
+                    <!-- Pemanggilan isi properti dari setiap object contacts.json -->
+                    <% cont.forEach((contact, i) => { %>
+                        <tr>
+                            <th scope="row"><%= i+1  %></th>
+                            <td><%= contact.name %></td>
+                            <td><%= contact.email %></td>
+                            <td>
+                                <a href="/contact/<%= contact.name%>" class="badge rounded-pill btn-success p-2">Detail</a>
+                                <a href="/delete/<%= contact.name%>" class="badge rounded-pill btn-danger p-2" onclick="return confirm('Are you sure to delete <%= contact.name%> from data?')">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %> 
+            </tbody>
+          </table>
+    </div>
+</div>

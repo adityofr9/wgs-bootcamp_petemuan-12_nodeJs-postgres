@@ -1,0 +1,27 @@
+<div class="container mt-5 pt-4">
+    <div class="row">
+        <div class="col">
+            <h1>Detail Contact</h1>
+            <!-- Pengkondisian apabila data Contact tidak ditemukan -->
+            <% if (!cont) { %>
+              <div class="alert alert-danger" role="alert">
+                Contact Data is not found! <br>
+                <a href="/contact" class="card-link">Back to contact page</a>
+              </div>
+            <% } else { %>
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= cont.name %></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= cont.mobile %></h6>
+                  <p class="card-text"><%= cont.email %></p>
+                  <br>
+                  <a href="/contact/edit/<%= cont.name%>" class="badge rounded-pill btn-primary p-2">Edit</a>
+                  <a href="/delete/<%= cont.name%>" class="badge rounded-pill btn-danger p-2">Delete</a>
+                  <br>
+                  <a href="/contact" class="card-link">Back to contact page</a>
+                  </div>
+              </div>
+            <% } %>
+        </div>
+    </div>
+</div>
